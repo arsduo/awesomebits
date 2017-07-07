@@ -2,35 +2,35 @@ source 'http://rubygems.org'
 
 ruby '2.1.7'
 
-gem 'rails', '3.2.22.3'
+gem 'rails', '~> 4.0.0'
+gem 'protected_attributes'
+
+# see
+# https://stackoverflow.com/questions/35893584/nomethoderror-undefined-method-last-comment-after-upgrading-to-rake-11#35893625
 gem 'rake', '< 11.0'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
-end
+gem 'sass-rails', '~> 4.0.0'
+gem 'coffee-rails'
+gem 'uglifier'
 
 gem 'country_select'
 gem 'pg', '~> 0.13.2'
-gem 'texticle', '~> 2.0', :require => 'texticle/rails'
+gem 'texticle', '~> 2.2', :require => 'texticle/rails'
 gem 'jquery-rails'
-gem 'clearance', '~> 0.16.2'
+gem 'clearance'
 gem 'thin'
 gem 'sass'
 gem 'high_voltage'
-gem 'paperclip', '~> 3.0.3'
+gem 'paperclip', '~> 3.5.2'
 gem 'fog'
 gem 'formtastic'
 gem 'flutie'
 gem 'bourbon', '~> 1.4.0'
 gem 'copycopter_client'
-gem "simple_form", "~> 2.1.3"
+gem "simple_form", "~> 3.5.0"
 gem 'nokogiri'
 gem "will_paginate", "~> 3.0.3"
-gem "friendly_id", "~> 4.0.9"
+gem "friendly_id", "~> 5.1"
 gem 'redcarpet'
 gem 'honeypot-captcha'
 gem 'sucker_punch', '~> 1.0'
