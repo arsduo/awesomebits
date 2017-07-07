@@ -135,8 +135,8 @@ describe Project do
     end
 
     it 'gives each returned project a #vote_count getter with its count' do
-      expect(Project.by_vote_count[0].vote_count).to eq("2")
-      expect(Project.by_vote_count[1].vote_count).to eq("1")
+      expect(Project.by_vote_count[0].vote_count).to eq(2)
+      expect(Project.by_vote_count[1].vote_count).to eq(1)
     end
   end
 
@@ -146,11 +146,7 @@ describe Project do
     let!(:new_winner) { FactoryGirl.create(:project, :funded_on => 1.days.ago) }
     let!(:ignored_winner) { FactoryGirl.create(:project, :funded_on => 1.week.ago, :chapter_id => new_winner.chapter_id) }
     it 'returns one project per chapter  by descending funding date' do
-<<<<<<< HEAD
-      expect(Project.recent_winners.all).to eq([new_winner, old_winner])
-=======
-      Project.recent_winners.should == [new_winner, old_winner]
->>>>>>> a5a0ac2... Handle deprecations
+      expect(Project.recent_winners).to eq([new_winner, old_winner])
     end
   end
 

@@ -8,16 +8,15 @@ describe Chapter do
   it { is_expected.to validate_presence_of :name }
   it { is_expected.to validate_presence_of :description }
   it { is_expected.to validate_uniqueness_of :name }
-  it { is_expected.not_to allow_value("invalid slug").for(:slug) }
-  it { is_expected.not_to allow_value("Invalid-Slug").for(:slug) }
   it { is_expected.to allow_value("valid-slug1").for(:slug) }
 
   context '.country_count' do
     let!(:chapter1){ FactoryGirl.create(:chapter, :country => "United States") }
     let!(:chapter2){ FactoryGirl.create(:chapter, :country => "BBB") }
     let!(:chapter3){ FactoryGirl.create(:chapter, :country => "United States") }
+
     it 'returns the number of unique countries we have chapters in' do
-      expect(Chapter.country_count).to eq("2")
+      expect(Chapter.country_count).to eq(2)
     end
   end
 
@@ -42,6 +41,14 @@ describe Chapter do
       chapter.slug = "this-is-a-slug"
       chapter.save
       expect(chapter.slug).to eq("this-is-a-slug")
+    end
+
+    it "doesn't allow invalid slug entries" do
+      chapter = FactoryGirl.build(:chapter, :name => "Foo")
+      chapter.slug = "invalid slug"
+      expect(chapter).not_to be_valid
+      chapter.slug = "Invalid-Slug"
+      expect(chapter).not_to be_valid
     end
   end
 

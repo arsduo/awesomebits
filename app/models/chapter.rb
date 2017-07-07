@@ -2,7 +2,7 @@ class Chapter < ActiveRecord::Base
   EXTRA_QUESTIONS_COUNT = 3
 
   extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :name, use: [:slugged, :finders]
 
   has_many :roles
   has_many :users, :through => :roles
@@ -27,7 +27,7 @@ class Chapter < ActiveRecord::Base
   end
 
   def self.country_count
-    select("count(distinct country) as country_count").first.country_count
+    distinct.count(:country)
   end
 
   def self.visitable
