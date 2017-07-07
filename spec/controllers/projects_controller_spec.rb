@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ProjectsController do
+describe ProjectsController, type: :controller do
   context "routing" do
     it "routes /chapters/boston/projects to projects#index" do
       expect({get: "/chapters/boston/projects"}).to route_to(

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe HighVoltage::PagesController, '#show' do
+describe HighVoltage::PagesController, '#show', type: :controller do
   render_views
 
   %w(about_us faq).each do |page|
