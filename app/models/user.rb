@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
   has_many :roles
   has_many :chapters, :through => :roles
-  has_many :dean_chapters, :source => :chapter, :through => :roles, :conditions => "roles.name = 'dean'"
+  has_many :dean_chapters, -> { where("roles.name = 'dean'") }, :source => :chapter, :through => :roles
 
   has_many :votes
   has_many :projects, :through => :votes

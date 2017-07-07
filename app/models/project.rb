@@ -5,7 +5,7 @@ class Project < ActiveRecord::Base
   belongs_to :hidden_by_user, class_name: "User"
   has_many :votes
   has_many :users, :through => :votes
-  has_many :photos, :order => "photos.sort_order asc, photos.id asc"
+  has_many :photos, -> { order("photos.sort_order asc, photos.id asc") }
 
   attr_accessible :name, :title, :url, :email, :phone, :about_me, :about_project,
                   :chapter_id, :extra_question_1, :extra_question_2, :extra_question_3,
