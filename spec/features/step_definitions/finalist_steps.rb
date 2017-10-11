@@ -1,9 +1,9 @@
 step 'I view the finalists for this month' do
-  visit(chapter_finalists_path(@current_user.chapters.first))
+  visit(chapter_finalists_path("en", @current_user.chapters.first))
 end
 
 step 'I view the finalists for the first chapter' do
-  visit(chapter_finalists_path(@current_chapter))
+  visit(chapter_finalists_path("en", @current_chapter))
   expect(page).to have_content("Finalists for #{@current_chapter.name}")
 end
 
@@ -16,11 +16,11 @@ step 'I should see the finalists for the other chapter' do
 end
 
 step "I look at the other chapter's finalists" do
-  visit(chapter_finalists_path(@other_current_chapter))
+  visit(chapter_finalists_path("en", @other_current_chapter))
 end
 
 step "I look at my chapter's finalists" do
-  visit(chapter_finalists_path(@current_chapter))
+  visit(chapter_finalists_path("en", @current_chapter))
 end
 
 step 'I should only see the projects with votes in my chapter' do
