@@ -1,8 +1,8 @@
-# https://github.com/rspec/rspec-rails/issues/255#issuecomment-7858480
-class ActionDispatch::Routing::RouteSet
-  def url_for_with_locale_fix(options)
-    url_for_without_locale_fix(options.merge(:locale => I18n.locale))
+# The optional locale screws with the tests; as a workaround, we set default locale for ALL specs.
+# See https://github.com/rspec/rspec-rails/issues/255#issuecomment-2865917. Note that later suggestions don't work, but this earlier one does.
+class ActionView::TestCase::TestController
+  def default_url_options(options={})
+    { :locale => I18n.default_locale }
   end
-
-  alias_method_chain :url_for, :locale_fix
 end
+
