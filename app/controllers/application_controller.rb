@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
   before_filter :fix_chapter_ids
 
+  def redirect_back_or(default)
+    redirect_to(session[:return_to] || default)
+    session[:return_to] = nil
+  end
+
   def must_be_logged_in
     if current_user.blank? || !current_user.logged_in?
       flash[:notice] = t("flash.permissions.must-be-logged-in")

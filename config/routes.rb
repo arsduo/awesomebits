@@ -11,6 +11,10 @@ Awesomefoundation::Application.routes.draw do
   get "/blog/*path"    => redirect { |params, request| "http://blog.awesomefoundation.org/#{params[:path]}" }, :format => false
   get "/apply"         => redirect("/en/submissions/new")
 
+  get '/sign_in', to: 'sessions#new', as: 'sign_in'
+  delete '/sign_out' => 'sessions#destroy', as: 'sign_out'
+  get '/sign_up' => 'users#new', as: 'sign_up'
+
   resources :passwords, :controller => 'clearance/passwords', :only => [:new, :create]
 
   resources :users, :shallow => true do
